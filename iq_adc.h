@@ -21,5 +21,5 @@ unsigned char lecture_analogique()
 {
 ConvertADC();         // Start conversion\par
 while( BusyADC() );   // Wait for completion\par
-return(ReadADC() >> 2);   // Read result\par
+return(ReadADC() >>2);   // Read result\par
 }
