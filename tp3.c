@@ -37,17 +37,24 @@ void displayHexa ( byte val){
 	*portb = val;
 }
 
+byte val_passe, val_div10, val_div100;
+byte unite, dizaine, centaine;
+
 void displayDec ( byte val){
-byte unite = 0x0F & (val%10);
-byte dizaine = 0x0F & ((val/10)%10);
-byte centaine = 0x0F & ((val/100)%10);
-byte mille;
-byte digitLUT[] = {0xFF, 0b01111111, 0b10111111, 0b11011111, 0b11101111};
- 	affiche_7seg(centaine, digitLUT[3]);
+byte digitLUT[] = {0b11111111, 0b01111111, 0b10111111, 0b11011111, 0b11101111};
+val_passe = val;
+val_div10 = val/10;
+val_div100 = val/100;
+
+unite = val % 10;
+dizaine = val_div10 % 10;
+centaine = val_div100 % 10;
+
+affiche_7seg(centaine, digitLUT[3]);
 //*portc = 0xFF;
-	affiche_7seg(dizaine, digitLUT[2]);
+affiche_7seg(dizaine, digitLUT[2]);
 //*portc = 0xFF;
- 	affiche_7seg(unite, digitLUT[1]);
+affiche_7seg(unite, digitLUT[1]);
 //*portc = 0xFF;
 
 }
